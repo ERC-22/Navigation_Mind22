@@ -1,0 +1,55 @@
+<launch>
+  <arg name="name" default="base_link"/>
+  <!-- changed odom of zed2 /zed2/odom to stereo odom -->
+  <remap from="odom" to="/stereo_odometry"/>
+<!--  <remap from="cmd_vel" to="nav_vel"/> -->
+
+  <node pkg="leo_navigation" type="base_link_flattener" name="base_link_flattener">
+      <param name="name" value="$(arg name)"/>
+    </node>
+
+    <!--static transform publisher setup for the "flattened" sensor frame
+    <node pkg="tf" type="static_transform_publisher" name="sensor_frame_broadcaster"
+      args="0 0 0.27 0 0 0 $(arg name)/fake $(arg name)/fake/sensor_fake 100" /> -->
+      
+          <!--static transform publisher setup for the "flattened" sensor frame
+    <node pkg="tf" type="static_transform_publisher" name="sensor_frame_broadcaster"
+      args="0.068 0.060 0.185 -1.571 -0.000 -2.019 fake fake/sensor_fake 100" /> -->
+
+
+    <!--static transform publisher setup for the "flattened" sensor frame -->
+    <node pkg="tf" type="static_transform_publisher" name="sensor_frame_broadcaster"
+      args="0.068 0.060 0.383 -1.571 -0.000 -2.019 fake fake/sensor_fake 100" />
+
+    <node pkg="leo_navigation" type="point_cloud_filter" name="pc_filter">
+      <param name="name" value="$(arg name)"/>
+      <param name="flat_height" value="-0.25"/>
+      <param name="slope" value="2.0"/>
+    </node>
+
+  <node name="move_base"
+        pkg="move_base"
+        type="move_base"
+        clear_params="true">
+    <rosparam command="load"
+              file="$(find leo_navigation)/config/move_base/move_base.yaml"/>
+
+    <!-- costmaps -->
+    <rosparam command="load"
+              ns="global_costmap"
+              file="$(find leo_navigation)/config/move_base/costmaps/costmap_common.yaml"/>
+    <rosparam command="load"
+              ns="local_costmap"
+              file="$(find leo_navigation)/config/move_base/costmaps/costmap_common.yaml"/>
+    <rosparam command="load"
+              file="$(find leo_navigation)/config/move_base/costmaps/local_costmap.yaml"/>
+    <rosparam command="load"
+              file="$(find leo_navigation)/config/move_base/costmaps/global_costmap.yaml"/>
+
+    <!-- planners -->
+    <rosparam command="load"
+              file="$(find leo_navigation)/config/move_base/planners/local_planner.yaml"/>
+    <rosparam command="load"
+              file="$(find leo_navigation)/config/move_base/planners/global_planner.yaml"/>
+  </node>
+</launch>
