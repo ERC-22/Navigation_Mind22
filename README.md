@@ -31,3 +31,9 @@ roslaunch launch_packages mapping.launch
 Launches the flattener + filter + move_base
 ```
 roslaunch launch_packages navigation.launch
+```
+Adding waypoints, you need to edit the CSV file in the saved paths folder, e.g, [point_name],X,Y add multiple points to the file in rows.
+to run the script
+```
+rosrun mind_waypoints set_goal.py [point_name]
+```
