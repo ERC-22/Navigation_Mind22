@@ -9,7 +9,7 @@
  <!-- <remap from="odom" to="/zed2/odom"/> -->
    
           <!-- When sending goals on /rtabmap/goal topic, use actionlib to communicate with move_base --> 
-	  <param name="use_action_for_goal" type="bool" value="false"/>
+	  <param name="use_action_for_goal" type="bool" value="true"/>
           <remap from="move_base"            to="/move_base"/>
 
           <remap from="left/image_rect" to="/zed2/left/image_rect_color"/>
@@ -25,18 +25,18 @@
    <arg unless="$(arg localization)" name="rtabmap_args"  default="--delete_db_on_start"/>
 
  <!-- Run a passthrough filter to down-sample the sensor point cloud.-->
-  <node pkg="nodelet" type="nodelet" name="pcl_manager" args="manager" output="screen"/>
+<!--  <node pkg="nodelet" type="nodelet" name="pcl_manager" args="manager" output="screen"/>
   <node pkg="nodelet" type="nodelet" name="voxel_grid" args="load pcl/VoxelGrid pcl_manager" output="screen">
     <remap from="~input" to="/zed2/point_cloud/cloud_registered"/>
     <remap from="~output" to="/camera/depth/points_downsampled"/>
     <rosparam>
       filter_field_name: z
       filter_limit_min: 0.01
-      filter_limit_max: 6.0  <!-- Limit the range of points to forward to 6 meters in viewing direction-->
+      filter_limit_max: 6.0  #Limit the range of points to forward to 6 meters in viewing direction
       filter_limit_negative: False
-      leaf_size: 0.05  <!-- Limit the density to 5 cm-->
+      leaf_size: 0.05       #Limit the density to 5 cm
     </rosparam>
-  </node>    
+  </node> -->
    <!-- Stereo Odometry -->   
    <node pkg="rtabmap_ros" type="stereo_odometry" name="stereo_odometry" output="screen">
       <remap from="left/image_rect"       to="/zed2/left/image_rect_color"/>
@@ -62,7 +62,7 @@
       <param name="Grid/MaxGroundHeight" type="string" value="3.0"/>
       <param name="Grid/MaxObstacleHeight" type="string" value="3.0"/>
    </node>
-  <node pkg="nodelet" type="nodelet" name="point_cloud_xyzrgb" args="load rtabmap_ros/point_cloud_xyzrgb stereo_nodelet">
+<!--  <node pkg="nodelet" type="nodelet" name="point_cloud_xyzrgb" args="load rtabmap_ros/point_cloud_xyzrgb stereo_nodelet">
 	<remap from="left/image"       to="/zed2/left/image_rect_color"/>
 	<remap from="righ/image"       to="/zed2/right/image_rect_color"/>
         <remap from="left/camera_info"      to="/zed2/left/camera_info"/>
@@ -74,7 +74,7 @@
 	<param name="decimation" type="int" value="4"/>
 	<param name="max_depth" type="double" value="4"/>
 	<param name="approx_sync" type="bool" value="false"/>
-  </node>
+  </node> -->
      
    <group ns="rtabmap">   
       <!-- Visual SLAM: args: "delete_db_on_start" and "udebug" -->
