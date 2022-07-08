@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
   // Get the robot's name
   ros::NodeHandle private_nh("~");
   std::string robot_name;
-  private_nh.param<std::string>("name", robot_name, "base_link");
+  private_nh.param<std::string>("name", robot_name, "base_footprint");
 
   // Define the parent and child frames of the new transform.
   // In this case, we are creating a new transform between the
