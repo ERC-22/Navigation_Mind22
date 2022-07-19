@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
   ros::NodeHandle private_nh("~");
   private_nh.param<float>("flat_height", flat_height, -0.25);
   private_nh.param<float>("slope", slope_threshold, 1.0);
-  private_nh.param<std::string>("name", name, "base_link");
+  private_nh.param<std::string>("name", name, "base_footprint");
 
   // Define transform frames
   flat_frame = "map";

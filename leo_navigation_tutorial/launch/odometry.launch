@@ -8,7 +8,7 @@
               file="$(find leo_navigation)/config/message_filter.yaml"/>
   </node>
 
- <!-- <node if="$(arg three_d)"
+ <node if="$(arg three_d)"
         name="imu_filter_node" 
         pkg="imu_filter_madgwick" 
         type="imu_filter_node">
@@ -26,6 +26,6 @@
     <rosparam if="$(arg three_d)"
               command="load"
               file="$(find leo_navigation)/config/ekf_localization_node/ekf_3d.yaml"/>
-  </node> -->
+  </node>
 
 </launch>

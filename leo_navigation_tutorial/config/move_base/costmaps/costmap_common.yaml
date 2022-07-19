@@ -15,18 +15,21 @@ static_layer:
   trinary_costmap: true
 
 # http://wiki.ros.org/costmap_2d/hydro/obstacles
-#  obstacle_range: 2.5
-#  raytrace_range: 3.0
+#  obstacle_range: 8.5
+#  raytrace_range: 10.0
+  
 obstacle_layer:
-  max_obstacle_height: 0.3
-  obstacle_range: 8.5
-  raytrace_range: 10.0
-  track_unknown_space: true
+  enabled: true
+  observation_sources: point_cloud_sensor
+  point_cloud_sensor: {sensor_frame: fake/sensor_fake, data_type: PointCloud2, topic: /points_filtered, marking: true, clearing: true, min_obstacle_height: 0.5}
+  max_obstacle_height: 5.0
+  track_unknown_space: false
   footprint_clearing_enabled: true
   combination_method: 1
-
+  inflation_radius: 0.38
 # http://wiki.ros.org/costmap_2d/hydro/inflation
+
 inflation_layer:
-  inflation_radius: 0.4
+  inflation_radius: 0.36
 #changed from 30 to 10
-  cost_scaling_factor: 5.0
+  cost_scaling_factor: 2.0

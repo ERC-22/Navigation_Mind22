@@ -18,13 +18,14 @@
 
 
     <!--static transform publisher setup for the "flattened" sensor frame -->
+    <!-- z was 0.383 -->
     <node pkg="tf" type="static_transform_publisher" name="sensor_frame_broadcaster"
-      args="0.068 0.060 0.383 -1.571 -0.000 -2.019 fake fake/sensor_fake 100" />
+      args="0.068 0.060 0.376 -1.571 -0.000 -2.019 fake fake/sensor_fake 100" />
 
     <node pkg="leo_navigation" type="point_cloud_filter" name="pc_filter">
       <param name="name" value="$(arg name)"/>
-      <param name="flat_height" value="-0.25"/>
-      <param name="slope" value="0.7"/>
+      <param name="flat_height" value="1.5"/>
+      <param name="slope" value="1.0"/>
     </node>
 
   <node name="move_base"
@@ -33,7 +34,7 @@
         clear_params="true">
     <rosparam command="load"
               file="$(find leo_navigation)/config/move_base/move_base.yaml"/>
-
+    <param name="navfn/allow_unknown" value="true"/>
     <!-- costmaps -->
     <rosparam command="load"
               ns="global_costmap"
