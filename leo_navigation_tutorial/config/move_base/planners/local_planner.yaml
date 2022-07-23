@@ -83,15 +83,15 @@ TebLocalPlannerROS:
 TrajectoryPlannerROS:
 
   # Robot configuration
-  acc_lim_x: 2.0
-  acc_lim_theta: 2.0
+  acc_lim_x: 10.0
+  acc_lim_theta: 10.0
   max_vel_x: 3.0
-  min_vel_x: 0.1
+  min_vel_x: 0.0
   max_vel_theta: 3.0
   min_vel_theta: -0.5
   min_in_place_vel_theta: 1.0
   escape_vel: -0.1
-  holonomic_robot: true
+  holonomic_robot: false
 
   # Goal tolerance
   #yaw_goal_tolerance: 0.1
@@ -102,7 +102,7 @@ TrajectoryPlannerROS:
   latch_xy_goal_tolerance: true
 
   # Forward simulation
-  sim_time: 4.0
+  sim_time: 3.0
   sim_granularity: 0.05
   angular_sim_granularity: 0.025
   vx_samples: 20
