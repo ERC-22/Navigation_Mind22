@@ -116,7 +116,8 @@ def controller():
 		elif inp =='3':
 			waypoints=[]
 			waypoints.append('h')
-			caller()
+			for target in waypoints:
+				caller(target)
 			
 		elif inp =='4':
 			sys.exit(1)
