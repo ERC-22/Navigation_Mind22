@@ -89,11 +89,12 @@
          <remap from="right/camera_info"     to="/zed2/right/camera_info"/>
 
          <remap from="odom" to="/stereo_odometry"/>
-         <param name="approx_sync" type="bool" value="false"/>
+         <param name="approx_sync" type="bool" value="true"/>
          <!-- <remap from="odom" to="/zed2/odom"/> -->
          <param name="queue_size" type="int" value="30"/>
 
          <!-- RTAB-Map's parameters -->
+         <param name="grid_size" type="double" value="70"/>
          <param name="Rtabmap/TimeThr" type="string" value="700"/>
          <param name="Rtabmap/DetectionRate" type="string" value="1"/>
          
