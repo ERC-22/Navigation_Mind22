@@ -30,6 +30,7 @@ obstacle_layer:
 # http://wiki.ros.org/costmap_2d/hydro/inflation
 
 inflation_layer:
-  inflation_radius: 0.36
+  #inflation_radius: 0.36
+  inflation_radius: 0.40
 #changed from 30 to 10
   cost_scaling_factor: 2.0
