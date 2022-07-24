@@ -24,8 +24,8 @@
 
     <node pkg="leo_navigation" type="point_cloud_filter" name="pc_filter">
       <param name="name" value="$(arg name)"/>
-      <param name="flat_height" value="1.0"/>
-      <param name="slope" value="0.7"/>
+      <param name="flat_height" value="1.3"/>
+      <param name="slope" value="0.80"/>
     </node>
 
   <node name="move_base"

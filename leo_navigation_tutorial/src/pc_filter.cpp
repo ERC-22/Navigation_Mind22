@@ -45,11 +45,11 @@ int main(int argc, char *argv[])
 
   // Set up a publisher for the filtered point cloud
   // and initialize the buffer so we can lookup transforms
-  filtered_pc_pub = nh.advertise<sensor_msgs::PointCloud2>("points_filtered", 1);
+  filtered_pc_pub = nh.advertise<sensor_msgs::PointCloud2>("points_filtered", 3);
   tf2_ros::TransformListener tf_listener(tf_buffer);
 
   // Subscribe to the original point cloud topic
-  ros::Subscriber original_pc_sub = nh.subscribe("/zed2/point_cloud/cloud_registered", 1, &filter_pc);
+  ros::Subscriber original_pc_sub = nh.subscribe("/zed2/point_cloud/cloud_registered", 3, &filter_pc);
 
   // Start listening for data and trigger the callback when possible
   ros::spin();

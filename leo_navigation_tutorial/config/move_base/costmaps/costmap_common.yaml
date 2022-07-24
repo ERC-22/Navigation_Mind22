@@ -1,6 +1,6 @@
 footprint: [[0.21, 0.22], [0.21, -0.22], [-0.21, -0.22], [-0.21, 0.22]]
 # added this useless line
-footprint_padding: 0.01
+footprint_padding: 0.00
 
 # http://wiki.ros.org/costmap_2d/hydro/staticmap
 # was map topic now from traversability estimation
@@ -9,14 +9,15 @@ static_layer:
   lethal_cost_threshold: 100
   map_topic: map
   first_map_only: false
-  subscribe_to_updates: false
+  subscribe_to_updates: true
   track_unknown_space: true
   use_maximum: false
   trinary_costmap: true
+  inflation_radius: 0.1
 
 # http://wiki.ros.org/costmap_2d/hydro/obstacles
-#  obstacle_range: 8.5
-#  raytrace_range: 10.0
+  obstacle_range: 8.5
+  raytrace_range: 10.0
   
 obstacle_layer:
   enabled: true
@@ -26,11 +27,11 @@ obstacle_layer:
   track_unknown_space: false
   footprint_clearing_enabled: true
   combination_method: 1
-  inflation_radius: 0.38
+  inflation_radius: 0.1
 # http://wiki.ros.org/costmap_2d/hydro/inflation
 
 inflation_layer:
   #inflation_radius: 0.36
-  inflation_radius: 0.40
+  inflation_radius: 0.26
 #changed from 30 to 10
   cost_scaling_factor: 2.0

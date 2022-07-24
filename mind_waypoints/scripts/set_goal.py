@@ -101,23 +101,27 @@ def controller():
 				print(waypoints)
 			for target in waypoints:
 				caller(target)
+			controller()
 		elif inp =='2':
 			waypoints=[]
 			with open(output_file_path, 'r') as file:
 				reader = csv.reader(file, delimiter = ',')
 				for row in reader:
-					if(len(row[0])>2):
+					if(row[0]=='point'):
 						pass
 					else:
 						waypoints.append(row[0])
 			for target in waypoints:
 				caller(target)
+				rospy.sleep(0.5)
+			controller()
 			
 		elif inp =='3':
 			waypoints=[]
 			waypoints.append('h')
 			for target in waypoints:
 				caller(target)
+			controller()
 			
 		elif inp =='4':
 			sys.exit(1)
