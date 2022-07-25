@@ -33,11 +33,12 @@ def done_cb(status, result):
 	if status == 3:
 		rospy.loginfo("Goal reached")
 		# Probe deployment
-		pub = rospy.Publisher('/probe_deployment_unit/drop', Empty, queue_size=1)
-		my_empty_msg = Empty()
-		rospy.sleep(1.0)
-		pub.publish(my_empty_msg)
-		rospy.loginfo("Probe deployed on target!")
+		if (probe == True):
+			pub = rospy.Publisher('/probe_deployment_unit/drop', Empty, queue_size=1)
+			my_empty_msg = Empty()
+			rospy.sleep(1.0)
+			pub.publish(my_empty_msg)
+			rospy.loginfo("Probe deployed on target!")
 	if status == 2 or status == 8:
 		rospy.loginfo("Goal cancelled")
 	if status == 4:
@@ -88,6 +89,7 @@ def controller():
 		print('3: get back to initial position\n')
 		print('4: Shutdown program\n')
 		global waypoints
+		global probe
 		inp = input()
 		if inp =='1':
 			waypoints=[]
@@ -100,6 +102,10 @@ def controller():
 				waypoints.append(something)
 				print(waypoints)
 			for target in waypoints:
+				if(len(target)==1):
+					probe = True
+				else:
+					probe = False
 				caller(target)
 			controller()
 		elif inp =='2':
@@ -112,6 +118,10 @@ def controller():
 					else:
 						waypoints.append(row[0])
 			for target in waypoints:
+				if(len(target)==1):
+					probe = True
+				else:
+					probe = False
 				caller(target)
 				rospy.sleep(0.5)
 			controller()
